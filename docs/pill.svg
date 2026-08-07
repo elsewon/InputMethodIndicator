@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 210" width="620" height="210" font-family="'Segoe UI','Malgun Gothic',system-ui,sans-serif" role="img" aria-label="한/영 전환마다 캐럿 아래로 파란 입력 표시 캡슐이 튀어나온다: 한타 캡슐 → 안녕하세요 → 영타 캡슐 → Hello">
+  <!-- 카드 -->
+  <rect x="8" y="8" width="604" height="194" rx="20" fill="#1b1f2a" stroke="#30363d" stroke-width="1.5"/>
+
+  <!-- 입력 텍스트. 글자마다 제 자리에 놓인 <text> 하나이고, 차례로 켜져 타이핑처럼 보인다.
+       (clipPath를 애니메이션하면 WebKit이 클립을 다시 계산하지 않아 Safari에서 멈춘다.) -->
+  <g fill="#c9d1d9" font-size="30">
+    <text x="60" y="92" opacity="0">안<animate attributeName="opacity" dur="8s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.24;0.99;1" values="0;1;1;0"/></text>
+    <text x="90" y="92" opacity="0">녕<animate attributeName="opacity" dur="8s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.28;0.99;1" values="0;1;1;0"/></text>
+    <text x="120" y="92" opacity="0">하<animate attributeName="opacity" dur="8s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.32;0.99;1" values="0;1;1;0"/></text>
+    <text x="150" y="92" opacity="0">세<animate attributeName="opacity" dur="8s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.36;0.99;1" values="0;1;1;0"/></text>
+    <text x="180" y="92" opacity="0">요<animate attributeName="opacity" dur="8s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.40;0.99;1" values="0;1;1;0"/></text>
+
+    <text x="224" y="92" opacity="0">H<animate attributeName="opacity" dur="8s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.64;0.99;1" values="0;1;1;0"/></text>
+    <text x="245" y="92" opacity="0">e<animate attributeName="opacity" dur="8s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.68;0.99;1" values="0;1;1;0"/></text>
+    <text x="262" y="92" opacity="0">l<animate attributeName="opacity" dur="8s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.72;0.99;1" values="0;1;1;0"/></text>
+    <text x="271" y="92" opacity="0">l<animate attributeName="opacity" dur="8s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.76;0.99;1" values="0;1;1;0"/></text>
+    <text x="280" y="92" opacity="0">o<animate attributeName="opacity" dur="8s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.80;0.99;1" values="0;1;1;0"/></text>
+  </g>
+
+  <!-- 캐럿: 글자마다 이동 + 깜빡임 -->
+  <rect x="60" y="64" width="3" height="36" rx="1.5" fill="#e6edf3">
+    <animate attributeName="x" dur="8s" repeatCount="indefinite" calcMode="discrete"
+             keyTimes="0;0.24;0.28;0.32;0.36;0.40;0.44;0.64;0.68;0.72;0.76;0.80;0.99;1"
+             values="60;90;120;150;180;210;224;245;262;271;280;297;297;60"/>
+    <animate attributeName="opacity" dur="1.1s" repeatCount="indefinite"
+             keyTimes="0;0.4;0.5;0.9;1" values="1;1;0;0;1"/>
+  </rect>
+
+  <!-- 1) 한타 캡슐 (가) — 줄 시작 캐럿 아래 -->
+  <g transform="translate(62,146)">
+    <g>
+      <animateTransform attributeName="transform" type="scale" dur="8s" repeatCount="indefinite"
+                        keyTimes="0;0.02;0.05;0.08;0.18;0.21;1" values="0.6;0.6;1.06;1;1;0.6;0.6"/>
+      <animate attributeName="opacity" dur="8s" repeatCount="indefinite"
+               keyTimes="0;0.02;0.06;0.18;0.21;1" values="0;0;1;1;0;0"/>
+      <rect x="-37" y="-25" width="74" height="50" rx="25" fill="#0a85ff" stroke="#8cccff" stroke-width="2.5"/>
+      <text x="0" y="10" fill="#ffffff" font-size="28" font-weight="700" text-anchor="middle">가</text>
+    </g>
+  </g>
+
+  <!-- 2) 영타 캡슐 (A) — "안녕하세요" 뒤 캐럿 아래 -->
+  <g transform="translate(226,146)">
+    <g>
+      <animateTransform attributeName="transform" type="scale" dur="8s" repeatCount="indefinite"
+                        keyTimes="0;0.44;0.47;0.5;0.6;0.63;1" values="0.6;0.6;1.06;1;1;0.6;0.6"/>
+      <animate attributeName="opacity" dur="8s" repeatCount="indefinite"
+               keyTimes="0;0.44;0.48;0.6;0.63;1" values="0;0;1;1;0;0"/>
+      <rect x="-37" y="-25" width="74" height="50" rx="25" fill="#0a85ff" stroke="#8cccff" stroke-width="2.5"/>
+      <text x="0" y="9.5" fill="#ffffff" font-size="27" font-weight="700" text-anchor="middle">A</text>
+    </g>
+  </g>
+</svg>

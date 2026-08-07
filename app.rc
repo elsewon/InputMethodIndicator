@@ -1,0 +1,46 @@
+// app.rc — InputMethodIndicator.exe의 버전 정보 + 애플리케이션 매니페스트.
+#include <windows.h>
+#include "resource.h"
+#include "Version.h"
+
+// 우리 매니페스트를 프로세스 기본 매니페스트로 임베드한다(RT_MANIFEST == 24).
+// 프로젝트가 링커의 자동 생성 매니페스트를 비활성화하므로(GenerateManifest =
+// false) 이것이 DPI 인식 + 공용 컨트롤의 단일 공급원이 된다.
+1 24 "app.manifest"
+
+// 선택적 애플리케이션/윈도우 아이콘. 트레이 아이콘 자체는 런타임에 그린다.
+// EXE와 진단 창에 아이콘을 주려면 아래 주석을 해제하고 app.ico를 배포한다:
+// IDI_APP ICON "app.ico"
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION    IMI_VERSION_MAJOR,IMI_VERSION_MINOR,IMI_VERSION_PATCH,IMI_VERSION_BUILD
+ PRODUCTVERSION IMI_VERSION_MAJOR,IMI_VERSION_MINOR,IMI_VERSION_PATCH,IMI_VERSION_BUILD
+ FILEFLAGSMASK  VS_FFI_FILEFLAGSMASK
+#ifdef _DEBUG
+ FILEFLAGS      VS_FF_DEBUG
+#else
+ FILEFLAGS      0x0L
+#endif
+ FILEOS         VOS_NT_WINDOWS32
+ FILETYPE       VFT_APP
+ FILESUBTYPE    VFT2_UNKNOWN
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName",      "InputMethodIndicator"
+            VALUE "FileDescription",  "Input Method Indicator"
+            VALUE "FileVersion",      IMI_VERSION_STRING_A
+            VALUE "InternalName",     "InputMethodIndicator"
+            VALUE "LegalCopyright",   IMI_COPYRIGHT_A
+            VALUE "OriginalFilename", "InputMethodIndicator.exe"
+            VALUE "ProductName",      IMI_PRODUCT_NAME_A
+            VALUE "ProductVersion",   IMI_VERSION_STRING_A
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END

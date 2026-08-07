@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  InputMethodIndicator.exe — the tray application.
+
+  Input state is read by watching the OS tray input indicator via UI Automation;
+  this is one self-contained x64/ARM64 GUI app. All compiler/linker settings are
+  inlined here.
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">     <Configuration>Debug</Configuration>  <Platform>x64</Platform></ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">   <Configuration>Release</Configuration><Platform>x64</Platform></ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">   <Configuration>Debug</Configuration>  <Platform>ARM64</Platform></ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64"> <Configuration>Release</Configuration><Platform>ARM64</Platform></ProjectConfiguration>
+  </ItemGroup>
+
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <ProjectGuid>{9A9A72F5-6D3F-482C-B565-0634B84FE8CB}</ProjectGuid>
+    <ProjectName>InputMethodIndicator</ProjectName>
+    <RootNamespace>InputMethodIndicator</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseDebugLibraries Condition="'$(Configuration)' == 'Debug'">true</UseDebugLibraries>
+    <UseDebugLibraries Condition="'$(Configuration)' == 'Release'">false</UseDebugLibraries>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+
+  <PropertyGroup>
+    <TargetName>InputMethodIndicator</TargetName>
+    <OutDir>$(MSBuildThisFileDirectory)out\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(MSBuildThisFileDirectory)out\obj\$(Platform)\$(Configuration)\</IntDir>
+    <!-- app.rc embeds app.manifest as RT_MANIFEST; suppress the auto-generated one. -->
+    <GenerateManifest>false</GenerateManifest>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <WarningLevel>Level4</WarningLevel>
+      <ConformanceMode>true</ConformanceMode>
+      <!-- /utf-8: sources carry 가 / あ / 中 / ⇪ literals. -->
+      <AdditionalOptions>/utf-8 /Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;WIN32_LEAN_AND_MEAN;NOMINMAX;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Common;$(ProjectDir)Model;$(ProjectDir)Input;$(ProjectDir)UI;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <SDLCheck>false</SDLCheck>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateManifest>false</GenerateManifest>
+      <AdditionalDependencies>d2d1.lib;dwrite.lib;windowscodecs.lib;uiautomationcore.lib;oleacc.lib;ole32.lib;oleaut32.lib;user32.lib;gdi32.lib;shell32.lib;shcore.lib;dwmapi.lib;uxtheme.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup Condition="'$(Configuration)' == 'Debug'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemDefinitionGroup Condition="'$(Configuration)' == 'Release'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="Diagnostics.cpp" />
+    <ClCompile Include="SelfTest.cpp" />
+    <ClCompile Include="Common\Log.cpp" />
+    <ClCompile Include="Common\DpiUtil.cpp" />
+    <ClCompile Include="Model\InputStateMachine.cpp" />
+    <ClCompile Include="Input\TrayIndicatorWatcher.cpp" />
+    <ClCompile Include="Input\CapsLockMonitor.cpp" />
+    <ClCompile Include="Input\FocusWatcher.cpp" />
+    <ClCompile Include="UI\TrayIcon.cpp" />
+    <ClCompile Include="UI\OverlayWindow.cpp" />
+    <ClCompile Include="UI\CaretResolver.cpp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="Diagnostics.h" />
+    <ClInclude Include="SelfTest.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Common\Log.h" />
+    <ClInclude Include="Common\DpiUtil.h" />
+    <ClInclude Include="Common\ComRef.h" />
+    <ClInclude Include="Common\Constants.h" />
+    <ClInclude Include="Common\Version.h" />
+    <ClInclude Include="Model\InputState.h" />
+    <ClInclude Include="Model\InputStateMachine.h" />
+    <ClInclude Include="Input\TrayIndicatorWatcher.h" />
+    <ClInclude Include="Input\CapsLockMonitor.h" />
+    <ClInclude Include="Input\FocusWatcher.h" />
+    <ClInclude Include="UI\TrayIcon.h" />
+    <ClInclude Include="UI\OverlayWindow.h" />
+    <ClInclude Include="UI\CaretResolver.h" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ResourceCompile Include="app.rc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="app.manifest" />
+  </ItemGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+
+</Project>

@@ -1,0 +1,27 @@
+# Build outputs
+/out/
+/dist/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.dll
+*.exe
+*.tlog
+*.iobj
+*.ipdb
+*.res
+
+# Visual Studio / VS Code local state.
+# NOTE: the .sln and .vcxproj files ARE the build definition and are committed;
+# only per-user and generated state is ignored.
+.vs/
+*.user
+*.suo
+*.aps
+*.VC.db
+*.VC.opendb
+
+# Logs produced at runtime
+*.log

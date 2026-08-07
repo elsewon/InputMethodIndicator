@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"
+          xmlns:asmv3="urn:schemas-microsoft-com:asm.v3">
+
+  <!-- 버전을 Common/Version.h와 맞춰 둘 것(매니페스트는 매크로를 쓸 수 없다). -->
+  <assemblyIdentity type="win32" name="InputMethodIndicator"
+                    version="0.1.0.0" processorArchitecture="*"/>
+
+  <!-- asInvoker: 절대 자동 권한 상승하지 않는다. 앱은 상승된 권한이 필요 없다. -->
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
+    <security>
+      <requestedPrivileges>
+        <requestedExecutionLevel level="asInvoker" uiAccess="false"/>
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+
+  <!-- Per-Monitor-V2 DPI 인식. 중요: UIA/GetGUIThreadInfo는 물리 픽셀을 반환하고,
+       오버레이는 물리 화면 좌표로 배치된다. -->
+  <asmv3:application>
+    <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">
+      <dpiAwareness>PerMonitorV2</dpiAwareness>
+    </asmv3:windowsSettings>
+    <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">
+      <dpiAware>true/pm</dpiAware>
+    </asmv3:windowsSettings>
+    <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">
+      <longPathAware xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">true</longPathAware>
+    </asmv3:windowsSettings>
+  </asmv3:application>
+
+  <!-- Windows 10과 Windows 11을 명시적으로 대상으로 한다. -->
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"/> <!-- Windows 10/11 -->
+    </application>
+  </compatibility>
+
+  <!-- 트레이 컨텍스트 메뉴 / 진단 창을 위한 비주얼 스타일. -->
+  <dependency>
+    <dependentAssembly>
+      <assemblyIdentity type="win32" name="Microsoft.Windows.Common-Controls"
+                        version="6.0.0.0" processorArchitecture="*"
+                        publicKeyToken="6595b64144ccf1df" language="*"/>
+    </dependentAssembly>
+  </dependency>
+
+</assembly>

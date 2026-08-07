@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup>
+    <Filter Include="Common"><UniqueIdentifier>{a1a1a1a1-0001-4001-8001-000000000001}</UniqueIdentifier></Filter>
+    <Filter Include="Model"> <UniqueIdentifier>{a1a1a1a1-0002-4001-8001-000000000002}</UniqueIdentifier></Filter>
+    <Filter Include="Input"> <UniqueIdentifier>{a1a1a1a1-0003-4001-8001-000000000003}</UniqueIdentifier></Filter>
+    <Filter Include="UI">    <UniqueIdentifier>{a1a1a1a1-0004-4001-8001-000000000004}</UniqueIdentifier></Filter>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="Diagnostics.cpp" />
+    <ClCompile Include="SelfTest.cpp" />
+    <ClCompile Include="Common\Log.cpp"><Filter>Common</Filter></ClCompile>
+    <ClCompile Include="Common\DpiUtil.cpp"><Filter>Common</Filter></ClCompile>
+    <ClCompile Include="Model\InputStateMachine.cpp"><Filter>Model</Filter></ClCompile>
+    <ClCompile Include="Input\TrayIndicatorWatcher.cpp"><Filter>Input</Filter></ClCompile>
+    <ClCompile Include="Input\CapsLockMonitor.cpp"><Filter>Input</Filter></ClCompile>
+    <ClCompile Include="Input\FocusWatcher.cpp"><Filter>Input</Filter></ClCompile>
+    <ClCompile Include="UI\TrayIcon.cpp"><Filter>UI</Filter></ClCompile>
+    <ClCompile Include="UI\OverlayWindow.cpp"><Filter>UI</Filter></ClCompile>
+    <ClCompile Include="UI\CaretResolver.cpp"><Filter>UI</Filter></ClCompile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="Diagnostics.h" />
+    <ClInclude Include="SelfTest.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Common\Log.h"><Filter>Common</Filter></ClInclude>
+    <ClInclude Include="Common\DpiUtil.h"><Filter>Common</Filter></ClInclude>
+    <ClInclude Include="Common\ComRef.h"><Filter>Common</Filter></ClInclude>
+    <ClInclude Include="Common\Constants.h"><Filter>Common</Filter></ClInclude>
+    <ClInclude Include="Common\Version.h"><Filter>Common</Filter></ClInclude>
+    <ClInclude Include="Model\InputState.h"><Filter>Model</Filter></ClInclude>
+    <ClInclude Include="Model\InputStateMachine.h"><Filter>Model</Filter></ClInclude>
+    <ClInclude Include="Input\TrayIndicatorWatcher.h"><Filter>Input</Filter></ClInclude>
+    <ClInclude Include="Input\CapsLockMonitor.h"><Filter>Input</Filter></ClInclude>
+    <ClInclude Include="Input\FocusWatcher.h"><Filter>Input</Filter></ClInclude>
+    <ClInclude Include="UI\TrayIcon.h"><Filter>UI</Filter></ClInclude>
+    <ClInclude Include="UI\OverlayWindow.h"><Filter>UI</Filter></ClInclude>
+    <ClInclude Include="UI\CaretResolver.h"><Filter>UI</Filter></ClInclude>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ResourceCompile Include="app.rc" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="app.manifest" />
+  </ItemGroup>
+
+</Project>
